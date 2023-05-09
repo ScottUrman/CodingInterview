@@ -3,9 +3,6 @@ package InterviewCake;
 import org.junit.Test;
 
 import java.util.*;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 // https://www.interviewcake.com/question/java/merging-ranges?course=fc1&section=array-and-string-manipulation
