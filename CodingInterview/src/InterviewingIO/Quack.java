@@ -1,7 +1,5 @@
 package InterviewingIO;
 
-import com.google.common.base.Preconditions;
-
 import java.lang.reflect.Array;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -16,6 +14,19 @@ Implement a combined queue and stack, known as a quack, with the following API:
   T dequeue(): Remove the earliest element from the quack
   int currentSize(): Return the current number of elements in the quack
 
+  Example:
+  Quack quack = new Quack(10);
+  quack.push('A');
+  quack.push('B');
+  quack.push('C');
+  quack.currentSize() -> 3
+  quack.pop() -> 'C'
+  quack.enqueue('D')
+  quack.pop() -> 'D'
+  quack.dequeue() -> 'A'
+  quack.dequeue() -> 'B'
+  quack.currentSize() -> 0
+
   Stick to only basic arrays please, i.e. don't use a resizable array such as a Java ArrayList.
  */
 public class Quack <T> {
@@ -25,13 +36,13 @@ public class Quack <T> {
   Chunk bottomChunk = null;
   int numElements = 0;
   class Chunk {
-    T[] elements;
+    T[] elements = (T[]) Array.newInstance(elementType, chunkSize);
     int top = -1;
     int bottom = -1;
     Chunk next = null;
     Chunk previous = null;
+
     Chunk() {
-      elements = (T[]) Array.newInstance(elementType, chunkSize);
     }
 
     void push(T newElement) {

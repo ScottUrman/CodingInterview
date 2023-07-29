@@ -128,4 +128,19 @@ public class QuackTest {
     System.out.println(quack);
     quack.dequeue();
   }
+
+  @Test
+  public void docExample() {
+    Quack<Character> quack = new Quack<>(Character.class, 10);
+    quack.push('A');
+    quack.push('B');
+    quack.push('C');
+    assertEquals(quack.currentSize(), 3);
+    assertEquals(quack.pop().charValue(), 'C');
+    quack.enqueue('D');
+    assertEquals(quack.pop().charValue(), 'D');
+    assertEquals(quack.dequeue().charValue(), 'A');
+    assertEquals(quack.dequeue().charValue(), 'B');
+    assertEquals(quack.currentSize(), 0);
+  }
 }
