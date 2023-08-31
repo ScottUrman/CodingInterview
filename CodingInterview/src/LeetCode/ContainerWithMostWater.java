@@ -2,25 +2,26 @@ package LeetCode;
 
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class ContainerWithMostWater {
   public int maxArea(int[] height) {
-    int x;
-    int y;
+    int left = 0;
+    int right = height.length - 1;
     int maxArea = 0;
-
-    for (x = 0; x < height.length - 1; x++) {
-      for (y = x + 1; y < height.length; y++) {
-        int area = (y -x) * Math.min(height[x], height[y]);
-        if (area > maxArea) {
-          maxArea = area;
-        }
+    while (right > left) {
+      int area = (right - left) * Math.min(height[left], height[right]);
+      if (area > maxArea) {
+        maxArea = area;
+      }
+      if (height[left] < height[right]) {
+        left++;
+      } else {
+        right--;
       }
     }
-    return maxArea;
 
+    return maxArea;
   }
 
   @Test

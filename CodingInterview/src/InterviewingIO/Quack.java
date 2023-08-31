@@ -27,7 +27,9 @@ Implement a combined queue and stack, known as a quack, with the following API:
   quack.dequeue() -> 'B'
   quack.currentSize() -> 0
 
-  Stick to only basic arrays please, i.e. don't use a resizable array such as a Java ArrayList.
+  Rules:
+    Don't use a resizable array such as a Java ArrayList, if you choose to use arrays use basic arrays only.
+    Do not use built in stack/queue methods, i.e. no calls to JavaScript push and pop methods or Java offer/push list methods
  */
 public class Quack <T> {
   int chunkSize;
