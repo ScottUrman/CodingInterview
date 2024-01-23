@@ -3,7 +3,9 @@ package InterviewingIO;
 // Came from a mock interview - first facebook question he was asked
 
 /*
-Candy Crush:
+Single dimension candy crush:
+Write a function String candyCrush(String) which behaves as follows:
+
 input: "aaaab" -> output: "b"
 input: "abccba" -> "abba" -> "aa" -> output: ""
 input: "aaabccc" -> "bccc" -> "b"
@@ -104,7 +106,7 @@ public class CandyCrush {
   public static void main(String[] args) {
     //String input = "abccbdef";
     //String input = "abccbaaa";
-    String input = "aabba";  // Should output be "a" (removed left to right) or "b" (removed right to left)
+    String input = "aabba";  // Should output be "a" (removed left to right) or "a" (removed right to left)
 
     System.out.println("recursive output: " + recursiveCandyCrush(input));
     System.out.println("stack output: " + stackCandyCrush(input));

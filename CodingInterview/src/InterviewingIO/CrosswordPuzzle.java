@@ -2,17 +2,22 @@ package InterviewingIO;
 
 // Facebook harder interview question
 /*
-Crossword puzzle:
-[
-  [W W W W]
-  [W B W B]
-  [B W W B]
-]
-
-[[0, 0, 'A', 4]]
-[[0, 0, 'D', 2]]
-[[0, 2, 'D', 3]]
-[[2, 1, 'A', 2]]
+ * Given a 2D character matrix that represents a crossword puzzle, for example:
+ * [
+ *  [W W W W]
+ *  [W B W B]
+ *  [B W W B]
+ * ]
+ *
+ * where 'W' represents a letter in a word and 'B' represents a block.  Find all of the potential words and
+ * return them as an array of 4 element arrays with the first 2 elements indicating the starting point, the
+ * third element indicating 'A' for across or 'D' for down, and the final element indicating the length of the
+ * word, eg for our example:
+ *
+ * [[0, 0, 'A', 4],
+ *  [0, 0, 'D', 2],
+ *  [0, 2, 'D', 3],
+ *  [2, 1, 'A', 2]]
  */
 
 import java.util.ArrayList;

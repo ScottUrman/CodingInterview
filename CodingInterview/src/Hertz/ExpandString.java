@@ -1,15 +1,46 @@
 package Hertz;
 
 
+/*
+ * Write a function String expandString(String input)
+ * The input string contains numbers and strings representing how many times substrings should be
+ * expanded, for example:
+ *
+ * expandString("2[a]3[bd]") -> "aabdbdbd"
+ * expandString("2[2[a]3[bd]]") -> "aabdbdbdaabdbdbd"
+ * expandString("2[2[]]") -> ""
+ * expandString("abc") -> "abc"
+ * expandString("123") -> "123"
+ */
 
+/*
+import re
+from pprint import pprint
 
-// 2[a]3[bd] -> aabdbdbd
-// 2[2[a]3[bd]] -> aabdbdbdaabdbdbd
-// 2[2[]
-// abc -> abc
-// 123 -> 123
+def expandString(input):
+    # non-greedy regex, will match the (shortest – generally innermost) expressions first!
+    find_groups = re.compile(r'(\d+)\[([^\[\]]*?)\]')
 
-// Main class should be named 'Solution' and should not be public.
+    while find_groups.search(input):
+        # inside out, replace the innermost expressions with their expansions
+        input = find_groups.sub(lambda match: match.group(2) * int(match.group(1)), input)
+
+    return input
+
+pprint(expandString("2[a]"))
+pprint(expandString("2[a]3[b]"))
+pprint(expandString("2[2[ab]3[xy]]3[g]"))
+pprint(expandString("abc"))
+pprint(expandString("2[2[]]"))
+
+The program prints out this:
+
+'aa'
+'aabbb'
+'ababxyxyxyababxyxyxyggg'
+'abc'
+''
+ */
 class ExpandString {
 
   public static String expandString(String input) {

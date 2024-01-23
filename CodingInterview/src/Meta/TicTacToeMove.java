@@ -43,79 +43,73 @@ public class TicTacToeMove {
       throw new IllegalStateException("Invalid player");
     }
 
-    char[][] newMatrix = new char[matrix.length][matrix.length];
-    for (int rowIdx = 0; rowIdx < matrix.length; rowIdx++) {
-      for (int columnIdx = 0; columnIdx < matrix[0].length; columnIdx++) {
-        if (matrix[rowIdx][columnIdx] != '.' && matrix[rowIdx][columnIdx] != 'X' && matrix[rowIdx][columnIdx] != 'O') {
-          throw new IllegalStateException("Invalid board");
-        }
-        newMatrix[rowIdx][columnIdx] = matrix[rowIdx][columnIdx];
-      }
-    }
-
-    newMatrix[row][column] = player;
-
-    // Check for winning row
-    for (int rowIdx = 0; rowIdx < newMatrix.length; rowIdx++) {
-      boolean winner = true;
-      for (int columnIdx = 0; columnIdx < newMatrix[0].length; columnIdx++) {
-
-        if (newMatrix[rowIdx][columnIdx] != player) {
-          winner = false;
-          break;
-        }
-      }
-
-      if (winner) {
-        System.out.println("Winning row " + rowIdx);
-        return true;
-      }
-    }
-
-    // Check for winning column
-    for (int columnIdx = 0; columnIdx < newMatrix[0].length; columnIdx++) {
-      boolean winner = true;
-      for (int rowIdx = 0; rowIdx < newMatrix.length; rowIdx++) {
-        if (newMatrix[rowIdx][columnIdx] != player) {
-          winner = false;
-          break;
-        }
-      }
-
-      if (winner) {
-        System.out.println("Winning column " + columnIdx);
-        return true;
-      }
-    }
-
-    // Check for winning downward right diagonal
     boolean winner = true;
-    for (int val = 0; val < newMatrix.length; val++) {
-      if (newMatrix[val][val] != player) {
+    // Check for winning column
+    for (int rowIdx = 0; rowIdx < matrix.length; rowIdx++) {
+      if (rowIdx != row && matrix[rowIdx][column] != player) {
         winner = false;
         break;
       }
     }
 
     if (winner) {
-      System.out.println("Winning downward right diagonal");
+      System.out.println("Winning column");
       return true;
     }
 
-    // Check for winning downward left diagonal
-    // length 3
-    // val 0.    -> 2
-    // val 1.    -> 1
-    // val 2.    -> 0
     winner = true;
-    for (int val = 0; val < newMatrix.length; val++) {
-      if (newMatrix[val][newMatrix.length - val - 1] != player) {
+    // Check for winning row
+    for (int columnIdx = 0; columnIdx < matrix[0].length; columnIdx++) {
+      if (columnIdx != column && matrix[row][columnIdx] != player) {
         winner = false;
         break;
       }
     }
 
+    if (winner) {
+      System.out.println("Winning row");
+      return true;
+    }
+
+    // Check for winning downward right diagonal
+    if (row == column) {
+      winner = true;
+      for (int val = 0; val < matrix.length; val++) {
+        if (val != row && matrix[val][val] != player) {
+          winner = false;
+          break;
+        }
+      }
+
+      if (winner) {
+        System.out.println("Winning downward right diagonal");
+        return true;
+      }
+    }
+
+    // Check for winning downward left diagonal
+    // length 3
+    // (0, 2) (1, 1) (2, 0)   c = length - r -1
+    // val 0.    -> 2
+    // val 1.    -> 1
+    // val 2.    -> 0
+    if (column == matrix.length - row - 1) {
+      winner = true;
+      for (int rowIdx = 0; rowIdx < matrix.length; rowIdx++) {
+        int columnIdx = matrix.length - rowIdx - 1;
+        if (rowIdx != row && columnIdx != column && matrix[rowIdx][columnIdx] != player) {
+          winner = false;
+          break;
+        }
+      }
+
+      if (winner) {
+        System.out.println("Winning downward left diagonal");
+      }
+    }
+
     return winner;
+
   }
 
   @Test
@@ -133,6 +127,17 @@ public class TicTacToeMove {
     // . X .
     // O . X
     assertTrue(tttm.move(2, 2, 'X'));
+  }
+
+  @Test
+  public void WinningDownLeft() {
+    // X . O
+    // . . .
+    // O . X
+    char[][] matrix = {{'X', '.', 'O'}, {'.', '.', '.'}, {'O', '.', 'X'}};
+    TicTacToeMove tttm = new TicTacToeMove();
+    tttm.matrix = matrix;
+    assertTrue(tttm.move(1, 1, 'O'));
   }
 
   @Test
