@@ -29,7 +29,8 @@ Implement a combined queue and stack, known as a quack, with the following API:
 
   Rules:
     Don't use a resizable array such as a Java ArrayList, if you choose to use arrays use basic arrays only.
-    Do not use built in stack/queue methods, i.e. no calls to JavaScript push and pop methods or Java offer/push list methods
+    Do not use built in stack/queue methods, i.e. no calls to Python or JavaScript push and pop methods or Java
+    offer/push list methods
  */
 public class Quack <T> {
   int chunkSize;
