@@ -10,6 +10,7 @@ package Hertz;
  * expandString("2[2[a]3[bd]]") -> "aabdbdbdaabdbdbd"
  * expandString("2[2[]]") -> ""
  * expandString("abc") -> "abc"
+ * expandString("7abc") -> "7abc"
  * expandString("123") -> "123"
  * expandString("12[3]") -> "333333333333"
  * expandString("5[2[a]]") -> "aaaaaaaaaa"
